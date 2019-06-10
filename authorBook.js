@@ -4,7 +4,7 @@ const downloadBook = require("./downloadBook");
 const config = require("./config");
 async function run(author) {
   const browser = await puppeteer.launch({
-    headless: false
+    headless: process.env.NODE_ENV !== "development"
     // args: ["--no-sandbox", "--disable-setuid-sandbox"]
   });
   const page = await browser.newPage();
@@ -33,15 +33,14 @@ async function run(author) {
     }
     return bookDatas;
   }, config.GITBOOK_AUTHOR_BOOKS_DIV);
-  const aboutPage = await browser.newPage();
   for (const book of books) {
     book.author = author;
-    await Promise.all([aboutBook(book, aboutPage), downloadBook(book)]);
+    await Promise.all([aboutBook(book, page), downloadBook(book)]);
   }
-  aboutPage.close();
   page.close();
   // browser.close();
   return books;
 }
-
-run("yeasy").then(books => console.log(books, books.length));
+// test
+// yeasy or leohxj ...
+run("leohxj").then(books => console.log(books, books.length));

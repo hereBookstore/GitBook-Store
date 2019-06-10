@@ -1,5 +1,25 @@
 [
   {
+    "href": "https://legacy.gitbook.com/book/leohxj/a-programmer-prepares",
+    "title": "程序员的自我修养",
+    "author": "leohxj"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/leohxj/front-end-database",
+    "title": "前端工程师手册",
+    "author": "leohxj"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/leohxj/learning-git",
+    "title": "Git学习与使用",
+    "author": "leohxj"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/leohxj/learning-node",
+    "title": "学好node开发",
+    "author": "leohxj"
+  },
+  {
     "href": "https://legacy.gitbook.com/book/yeasy/docker_practice",
     "title": "Docker —— 从入门到实践",
     "description": "Help you understand and use docker, with practical cases.",
