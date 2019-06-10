@@ -1,0 +1,68 @@
+[
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/docker_practice",
+    "title": "Docker —— 从入门到实践",
+    "description": "Help you understand and use docker, with practical cases.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/blockchain_guide",
+    "title": "区块链技术指南",
+    "description": "A book to introduce blockchain technologies, including the key techniques, algorithms, usage scenarios, and projects.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/openstack_understand_neutron",
+    "title": "深入理解Neutron -- OpenStack 网络实现",
+    "description": "Introduce the principles and implementation details of the OpenStack Neutron Project.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/hyperledger_code_fabric",
+    "title": "Hyperledger 源码分析之 Fabric",
+    "description": "Code analysis on hyperledger fabric project.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/openstack_code_neutron",
+    "title": "OpenStack 源码分析之 Neutron",
+    "description": "A book to analyze the code of the OpenStack Neutron Project.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/openstack_code_heatclient",
+    "title": "OpenStack 源码分析之 HeatClient",
+    "description": "Analyze the source code of the OpenStack HeatClient project.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/docker_swarm_code",
+    "title": "Docker Swarm 源码分析",
+    "description": "Analyze the source code of the Docker Swarm project.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/openstack_code_magnum",
+    "title": "OpenSt­ack 源码­分析之 Magnum",
+    "description": "A book to analyze the code of the OpenStack Magnum Project.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/openstack_code_heat",
+    "title": "OpenStack 源码分析之 Heat",
+    "description": "The code analysis of the OpenStack Heat project.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/mininet_book",
+    "title": "Mininet  应用与源码剖析",
+    "description": "A book introduces the usage and analyzes the source code of Mininet.",
+    "author": "yeasy"
+  },
+  {
+    "href": "https://legacy.gitbook.com/book/yeasy/openstack_code_kuryr",
+    "title": "OpenSt­ack 源码­分析之 Kuryr",
+    "description": "A book to analyze the code of the OpenStack Magnum",
+    "author": "yeasy"
+  }
+]

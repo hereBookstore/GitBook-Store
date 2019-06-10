@@ -1,0 +1,8 @@
+.DS_Store
+dist/
+node_modules/
+yarn-error.log
+.idea
+static/**/*.epub
+static/**/*.pdf
+static/**/*.mobi
