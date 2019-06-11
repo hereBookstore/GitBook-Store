@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const { cut } = require("nodejieba");
 const aboutBook = require("./aboutBook");
 const downloadBook = require("./downloadBook");
 const config = require("./config");
@@ -22,7 +23,11 @@ async function run(author) {
         const { href, textContent: title } = book.querySelector(".title > a");
         const { textContent: description } =
           book.querySelector(".description") || {};
-        return { href, title, description };
+        return {
+          href,
+          title: cut(title, true),
+          description: cut(description, true)
+        };
       });
     let bookDatas = getBooks();
     for (let pageNum of books.querySelectorAll(
