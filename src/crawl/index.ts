@@ -9,7 +9,7 @@ let page = puppeteer
     // args: ["--no-sandbox", "--disable-setuid-sandbox"]
   })
   .then(browser => browser.newPage());
-exports.autoLogin = async () => {
+export const autoLogin = async () => {
   page = await page;
   await page.goto(config.GITBOOK_ORIGIN);
   await page.click(config.GITBOOK_REDIRECT_TO_LOGIN);
@@ -23,7 +23,7 @@ exports.autoLogin = async () => {
   }
   console.log('登陆gitbook成功');
 };
-exports.crawl = async author => {
+export const crawl = async author => {
   await page.goto(`${config.GITBOOK_ORIGIN}@${author}`);
   const books = await page.evaluate(GITBOOK_AUTHOR_BOOKS_DIV => {
     const books = document.querySelector(GITBOOK_AUTHOR_BOOKS_DIV);
