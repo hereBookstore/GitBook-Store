@@ -15,7 +15,8 @@ export default {
   GITBOOK_PASSWORD: process.env.GITBOOK_PASSWORD,
   GITBOOK_ORIGIN: 'https://legacy.gitbook.com/',
   GITBOOK_STATIC_PATH:
-    process.env.GITBOOKS_PATH || require('path').join(__dirname, 'static'),
+    process.env.GITBOOKS_PATH ||
+    require('path').join(__dirname, '..', '..', '..', 'ebook'),
   NODE_ENV: process.env.NODE_ENV,
 };
 console.log(module.exports);

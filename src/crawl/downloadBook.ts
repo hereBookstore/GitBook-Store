@@ -1,9 +1,8 @@
 import { createWriteStream } from 'fs';
-import { promises } from 'fs';
 import { join } from 'path';
-import request from 'request';
+import * as request from 'request';
 import config from './config';
-const { mkdir } = promises;
+const { mkdir } = require('fs').promises;
 export default book => {
   const bookPath = join(config.GITBOOK_STATIC_PATH, book.author);
   return mkdir(bookPath, { recursive: true }).then(() => {

@@ -19,6 +19,7 @@ export class AppService {
           authors = docs.map(item => item.author);
           this.startLoop();
         } else {
+          authors = [];
           console.log('no crawl job');
         }
       });
@@ -44,7 +45,7 @@ export class AppService {
   async crawlBook(author) {
     const response = await head(`${config.GITBOOK_ORIGIN}@${author}`);
     if (response.statusCode == 200) {
-      this.crawlModel.update(
+      await this.crawlModel.update(
         { author },
         { author, crawl: false },
         { upsert: true },
@@ -52,7 +53,7 @@ export class AppService {
       authors.push(author);
       console.log('A new crawl job is coming!', authors);
       authors.length === 1 && this.startLoop();
-    }
+    } else console.log(author, 'not a gitbook author');
   }
   async searchBook(word) {
     return this.gitbookModel
