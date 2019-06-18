@@ -30,7 +30,9 @@ export class AppService {
     const author = authors[0];
     try {
       const books = await crawl(author);
-      await this.gitbookModel.collection.insert(books);
+      books &&
+        books.length &&
+        (await this.gitbookModel.collection.insert(books));
       await this.crawlModel.update({ author }, { author, crawl: true });
       console.log('Crawled books:', books && books.length);
     } catch (e) {
@@ -56,6 +58,7 @@ export class AppService {
     } else console.log(author, 'not a gitbook author');
   }
   async searchBook(word) {
+    console.log('mongo search:', cut(word, true));
     return this.gitbookModel
       .find(
         { $text: { $search: cut(word, true).join(' ') } },
@@ -66,6 +69,7 @@ export class AppService {
       .exec();
   }
   async bookList({ tag, sort }) {
+    console.log('mongo book list', { find: { tag }, sort: { [sort]: -1 } });
     return this.gitbookModel
       .find({ tag })
       .limit(500)
