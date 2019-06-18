@@ -1,9 +1,10 @@
-const { createWriteStream } = require('fs');
-const { mkdir } = require('fs').promises;
-const { join } = require('path');
-const request = require('request');
-const config = require('./config');
-module.exports = book => {
+import { createWriteStream } from 'fs';
+import { promises } from 'fs';
+import { join } from 'path';
+import request from 'request';
+import config from './config';
+const { mkdir } = promises;
+export default book => {
   const bookPath = join(config.GITBOOK_STATIC_PATH, book.author);
   return mkdir(bookPath, { recursive: true }).then(() => {
     const { origin, pathname } = new URL(book.href);

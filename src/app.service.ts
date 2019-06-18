@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { cut } from 'nodejieba';
 import { crawl, autoLogin } from './crawl';
-import * as config from './crawl/config';
+import config from './crawl/config';
 const head = require('util').promisify(require('request').head);
 const sleep = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
 const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
@@ -18,6 +18,8 @@ export class AppService {
         if (docs.length) {
           authors = docs.map(item => item.author);
           this.startLoop();
+        } else {
+          console.log('no crawl job');
         }
       });
     });
@@ -31,7 +33,7 @@ export class AppService {
       await this.crawlModel.update({ author }, { author, crawl: true });
       console.log('Crawled books:', books && books.length);
     } catch (e) {
-      console.log('crawl loop', e);
+      console.error('crawl loop', e);
     }
     const ms = random(1000, 3000);
     console.log('Sleeping...', ms);

@@ -1,8 +1,8 @@
-const puppeteer = require('puppeteer');
-const { cut } = require('nodejieba');
-const aboutBook = require('./aboutBook');
-const downloadBook = require('./downloadBook');
-const config = require('./config');
+import * as puppeteer from 'puppeteer';
+import { cut } from 'nodejieba';
+import aboutBook from './aboutBook';
+import downloadBook from './downloadBook';
+import config from './config';
 let page = puppeteer
   .launch({
     headless: process.env.NODE_ENV !== 'development',
@@ -19,9 +19,9 @@ export const autoLogin = async () => {
   await page.click(config.GITBOOK_LOGIN_BUTTON);
   await page.waitForNavigation();
   if (page.url() !== 'https://legacy.gitbook.com/@canfeit/dashboard') {
-    throw new Error('登陆gitbook失败:' + page.url());
+    throw new Error('auto login gitbook error:' + page.url());
   }
-  console.log('登陆gitbook成功');
+  console.log('auto login gitbook ok');
 };
 export const crawl = async author => {
   await page.goto(`${config.GITBOOK_ORIGIN}@${author}`);
@@ -30,7 +30,7 @@ export const crawl = async author => {
     const getBooks = () =>
       Array.prototype.map.call(books.querySelectorAll('.book-infos'), book => {
         const { href, textContent: title } = book.querySelector('.title > a');
-        const { textContent: description } =
+        const { textContent: description = undefined } =
           book.querySelector('.description') || {};
         return {
           href,

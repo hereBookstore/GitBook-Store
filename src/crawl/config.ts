@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   GITBOOK_REDIRECT_TO_LOGIN:
     '#Homepage > div > div.gb-page-header > div > div > a.btn.btn-link.btn-md.pull-right.hidden-xs.btn-login',
   GITBOOK_USERNAME_INPUT:
@@ -19,6 +19,9 @@ module.exports = {
   NODE_ENV: process.env.NODE_ENV,
 };
 console.log(module.exports);
-if (!module.exports.GITBOOK_USERNAME || !module.exports.GITBOOK_PASSWORD) {
+if (
+  !module.exports.default.GITBOOK_USERNAME ||
+  !module.exports.default.GITBOOK_PASSWORD
+) {
   throw new Error('未指定 GITBOOK_USERNAME 和 GITBOOK_PASSWORD 环境变量');
 }
