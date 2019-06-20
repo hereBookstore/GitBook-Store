@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "description": "gitbook store client",
+  "main": "node_modules/expo/AppEntry.js",
   "templateInfo": {
     "name": "default",
     "typescript": true,
     "css": "sass"
   },
   "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -34,7 +40,17 @@
     "@tarojs/taro-tt": "1.3.2",
     "@tarojs/taro-weapp": "1.3.2",
     "nervjs": "^1.4.0",
-    "nerv-devtools": "^1.4.0"
+    "nerv-devtools": "^1.4.0",
+    "@tarojs/components-rn": "^1.3.2",
+    "@tarojs/taro-rn": "^1.3.2",
+    "@tarojs/taro-router-rn": "^1.3.2",
+    "@tarojs/taro-redux-rn": "^1.3.2",
+    "expo": "^33.0.6",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native-web": "^0.11.4",
+    "redux": "^4.0.0",
+    "tslib": "^1.8.0"
   },
   "devDependencies": {
     "@types/react": "^16.4.6",
@@ -49,6 +65,7 @@
     "babel-plugin-transform-jsx-stylesheet": "^0.6.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-expo": "^5.1.1",
     "babel-eslint": "^8.2.3",
     "eslint": "^5.16.0",
     "eslint-config-taro": "1.3.2",
