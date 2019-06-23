@@ -45,17 +45,19 @@ export class AppService {
     authors.length && this.startLoop();
   }
   async crawlBook(author) {
-    const response = await head(`${config.GITBOOK_ORIGIN}@${author}`);
-    if (response.statusCode == 200) {
+    if (
+      authors.indexOf(author) === -1 &&
+      (await head(`${config.GITBOOK_ORIGIN}@${author}`)).statusCode == 200
+    ) {
+      authors.push(author);
       await this.crawlModel.update(
         { author },
         { author, crawl: false },
         { upsert: true },
       );
-      authors.push(author);
       console.log('A new crawl job is coming!', authors);
       authors.length === 1 && this.startLoop();
-    } else console.log(author, 'not a gitbook author');
+    }
   }
   async searchBook(word) {
     console.log('mongo search:', cut(word, true));
@@ -64,7 +66,7 @@ export class AppService {
         { $text: { $search: cut(word, true).join(' ') } },
         { score: { $meta: 'textScore' } },
       )
-      .limit(500)
+      .limit(20)
       .sort({ score: { $meta: 'textScore' } })
       .exec();
   }
@@ -72,7 +74,7 @@ export class AppService {
     console.log('mongo book list', { find: { tag }, sort: { [sort]: -1 } });
     return this.gitbookModel
       .find({ tag })
-      .limit(500)
+      .limit(20)
       .sort({ [sort]: -1 })
       .exec();
   }

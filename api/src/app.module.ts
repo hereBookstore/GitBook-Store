@@ -6,7 +6,7 @@ import { GitbookSchema, CrawlSchema } from './app.schema';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/kedo', {
+    MongooseModule.forRoot('mongodb://localhost/gitbook', {
       useNewUrlParser: true,
     }),
     MongooseModule.forFeature([

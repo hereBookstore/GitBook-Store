@@ -30,7 +30,7 @@ export const crawl = async author => {
     const getBooks = () =>
       Array.prototype.map.call(books.querySelectorAll('.book-infos'), book => {
         const { href, textContent: title } = book.querySelector('.title > a');
-        const { textContent: description = undefined } =
+        const { textContent: description = '' } =
           book.querySelector('.description') || {};
         return {
           href,
