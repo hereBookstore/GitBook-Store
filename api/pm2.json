@@ -1,0 +1,11 @@
+//pm2(node进程管理器)配置
+{
+  "apps": [
+    {
+      "script": "dist/main.js" //pm2 入口文件
+      // "exec_mode": "cluster",//启动模式(集群模式)
+      // "instances": "0",//启动实例数量(充分利用cpu核心)
+      // "node_args":"--max_old_space_size=2048"
+    }
+  ]
+}

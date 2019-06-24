@@ -6,7 +6,7 @@ import config from './config';
 let page = puppeteer
   .launch({
     headless: process.env.NODE_ENV !== 'development',
-    // args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    args: ['--no-sandbox', '--disable-setuid-sandbox'], //不建议指定,puppeteer不建议以root方式运行
   })
   .then(browser => browser.newPage());
 export const autoLogin = async () => {
