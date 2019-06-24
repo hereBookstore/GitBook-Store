@@ -4,7 +4,7 @@ import * as request from 'request';
 import config from './config';
 const { mkdir } = require('fs').promises;
 export default book => {
-  const bookPath = join(config.GITBOOK_STATIC_PATH, book.author);
+  const bookPath = join(config.GITBOOKS_PATH, book.author);
   return mkdir(bookPath, { recursive: true }).then(() => {
     const { origin, pathname } = new URL(book.href);
     const bookName = book.title.join('');

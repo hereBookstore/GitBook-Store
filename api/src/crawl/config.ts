@@ -11,10 +11,10 @@ export default {
     '#AuthorProfile > div.gb-page-inner > div > div > div > div.col-md-9 > div',
   GITBOOK_BOOK_ABOUT_DIV:
     '#BookHome > div.gb-page-inner > div > div > div > div.panel-body > div',
+  GITBOOK_ORIGIN: 'https://legacy.gitbook.com/',
   GITBOOK_USERNAME: process.env.GITBOOK_USERNAME,
   GITBOOK_PASSWORD: process.env.GITBOOK_PASSWORD,
-  GITBOOK_ORIGIN: 'https://legacy.gitbook.com/',
-  GITBOOK_STATIC_PATH:
+  GITBOOKS_PATH:
     process.env.GITBOOKS_PATH ||
     require('path').join(__dirname, '..', '..', '..', 'ebook'),
   NODE_ENV: process.env.NODE_ENV,
