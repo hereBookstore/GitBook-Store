@@ -1,0 +1,24 @@
+{
+  "name": "gitbook-store",
+  "version": "1.0.0",
+  "description": "GitBook's book index",
+  "scripts": {
+    "preinstall": "cd api&&yarn&&cd ../app&&yarn",
+    "start": "concurrently \"cd api&&yarn start\" \"cd app&&yarn dev -p 10086\" \"node dev-proxy\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hereBookstore/GitBook-Store.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hereBookstore/GitBook-Store/issues"
+  },
+  "homepage": "https://github.com/hereBookstore/GitBook-Store#readme",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "http-proxy": "^1.17.0"
+  }
+}

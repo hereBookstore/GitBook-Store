@@ -6,4 +6,3 @@ require("http")
       : proxy.web(req, res, { target: "http://localhost:10086" });
   })
   .listen(9000, () => console.log("HTTP proxy running on", 9000));
-proxy.on("error", console.error);

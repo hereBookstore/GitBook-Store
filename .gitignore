@@ -2,3 +2,5 @@
 *.epub
 *.pdf
 *.mobi
+
+node_modules

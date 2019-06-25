@@ -1,4 +1,6 @@
 import * as mongoose from 'mongoose';
+mongoose.set('useCreateIndex', true);
+
 export const CrawlSchema = new mongoose.Schema({
   author: String,
   crawl: Boolean,
