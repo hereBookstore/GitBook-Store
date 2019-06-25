@@ -65,8 +65,7 @@ export default class extends React.Component {
         style={{
           position: "fixed",
           zIndex: 1,
-          padding: "0 50px",
-          width: "50%"
+          padding: "0 50px"
         }}
         onSearch={value =>
           axios.get(url + "/search?q=" + value).then(response => {
