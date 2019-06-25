@@ -1,8 +1,9 @@
 import { Input, List, Icon, Form, Button, Menu } from "antd";
 import axios from "axios";
-const url = process
-  ? "http://localhost:9000/gitbook"
-  : "http://gitbook.kedo.so";
+const url =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:9000/gitbook"
+    : "http://gitbook.kedo.so/gitbook";
 const { Search } = Input;
 const IconText = ({ type, text }) => (
   <span>
