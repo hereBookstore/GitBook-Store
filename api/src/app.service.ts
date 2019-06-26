@@ -66,7 +66,7 @@ export class AppService {
         { $text: { $search: cut(word, true).join(' ') } },
         { score: { $meta: 'textScore' } },
       )
-      .limit(20)
+      .limit(100)
       .sort({ score: { $meta: 'textScore' } })
       .exec();
   }
@@ -74,7 +74,7 @@ export class AppService {
     console.log('mongo book list', { find: { tag }, sort: { [sort]: -1 } });
     return this.gitbookModel
       .find({ tag })
-      .limit(20)
+      .limit(100)
       .sort({ [sort]: -1 })
       .exec();
   }

@@ -23,7 +23,7 @@ const WrappedShare = Form.create()(({ form }) => (
       });
     }}
   >
-    找不到想要的Gitbook资源?您可以通过"分享用户"帮助我们补充资源,或通过
+    找不到想要的Gitbook资源?您可以通过"分享用户"功能帮助我们补充资源,或通过
     <a href="https://github.com/hereBookstore/GitBook-Store">GitHub</a>
     反馈...
     <Form.Item>
@@ -75,7 +75,7 @@ export default class extends React.Component {
         enterButton="kedo.so"
       />,
       <List
-        style={{ padding: "0 50px" }}
+        style={{ padding: "50px 50px" }}
         itemLayout="horizontal"
         size="large"
         dataSource={this.state.gitbooks}
@@ -90,9 +90,30 @@ export default class extends React.Component {
           <List.Item
             key={item.title}
             actions={[
-              <IconText type="star-o" text="156" />,
-              <IconText type="like-o" text="156" />,
-              <IconText type="message" text="2" />
+              // <IconText type="star-o" text="156" />,
+              // <IconText type="like-o" text="156" />,
+              // <IconText type="message" text="2" />,
+              <a
+                href={`http://gitbook.kedo.so/ebook/${
+                  item.author
+                }/${item.title.join("")}.pdf`}
+              >
+                PDF
+              </a>,
+              <a
+                href={`http://gitbook.kedo.so/ebook/${
+                  item.author
+                }/${item.title.join("")}.epub`}
+              >
+                Ebook
+              </a>,
+              <a
+                href={`http://gitbook.kedo.so/ebook/${
+                  item.author
+                }/${item.title.join("")}.mobi`}
+              >
+                Kindle
+              </a>
             ]}
           >
             <List.Item.Meta
