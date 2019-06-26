@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Input, List, Icon, Form, Button, Menu } from "antd";
 import axios from "axios";
 const url = "/gitbook";
@@ -56,6 +57,14 @@ export default class extends React.Component {
   }
   render() {
     return [
+      <Head>
+        <title>GitBook Ebook Search</title>
+        <meta
+          name="description"
+          content="GitBook pdf/epub/kindle mobi格式电子书搜索下载."
+        />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>,
       <Search
         allowClear
         size="large"
