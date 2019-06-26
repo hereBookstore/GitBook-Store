@@ -5,7 +5,8 @@ export default async (book, page) => {
   book.about = cut(
     await page.evaluate(
       GITBOOK_BOOK_ABOUT_DIV =>
-        document.querySelector(GITBOOK_BOOK_ABOUT_DIV).textContent,
+        (document.querySelector(GITBOOK_BOOK_ABOUT_DIV) || { textContent: '' })
+          .textContent,
       config.GITBOOK_BOOK_ABOUT_DIV,
     ),
     true,
