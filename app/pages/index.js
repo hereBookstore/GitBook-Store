@@ -58,7 +58,7 @@ export default class extends React.Component {
   render() {
     return [
       <Head>
-        <title>GitBook Ebook Search</title>
+        <title>GitBook Ebook Search--GitBook电子书资源搜索</title>
         <meta
           name="description"
           content="GitBook pdf/epub/kindle mobi格式电子书搜索下载."
