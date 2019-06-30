@@ -1,45 +1,8 @@
 import Head from "next/head";
-import { Input, List, Icon, Form, Button } from "antd";
+import { Input, List, Icon, Button, Alert } from "antd";
 import axios from "axios";
 const url = "/gitbook";
 const { Search } = Input;
-// const IconText = ({ type, text }) => (
-//   <span>
-//     <Icon type={type} style={{ marginRight: 8 }} />
-//     {text}
-//   </span>
-// );
-const WrappedShare = Form.create()(({ form }) => (
-  <Form
-    layout="inline"
-    onSubmit={e => {
-      e.preventDefault();
-      form.validateFields((err, values) => {
-        if (!err && values.username) {
-          axios.get(url + "/crawl/" + values.username);
-        }
-      });
-    }}
-  >
-    找不到想要的Gitbook资源?您可以通过"分享用户"功能帮助我们补充资源,或通过
-    <a href="https://github.com/hereBookstore/GitBook-Store">GitHub</a>
-    反馈...
-    <Form.Item>
-      {form.getFieldDecorator("username")(
-        <Input
-          allowClear
-          prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-          placeholder="Gitbook 用户名"
-        />
-      )}
-    </Form.Item>
-    <Form.Item>
-      <Button type="primary" htmlType="submit">
-        分享用户
-      </Button>
-    </Form.Item>
-  </Form>
-));
 
 export default class extends React.Component {
   state = {
@@ -47,6 +10,17 @@ export default class extends React.Component {
     gitbooks: [],
     value: ""
   };
+  share() {
+    if (this.state.shareUser) {
+      axios.get(url + "/crawl/" + this.state.shareUser);
+      this.setState({ shareUser: "" });
+    } else {
+      this.setState({ alert: true });
+      setTimeout(() => {
+        this.setState({ alert: false });
+      }, 2000);
+    }
+  }
   componentDidMount() {
     this.list("/list");
   }
@@ -88,9 +62,39 @@ export default class extends React.Component {
         itemLayout="vertical"
         size="small"
         dataSource={this.state.gitbooks}
-        footer={<WrappedShare />}
+        footer={
+          <div style={{ float: "left", width: "100%" }}>
+            找不到GitBook资源？点击“分享”或
+            <a href="https://github.com/hereBookstore/GitBook-Store">
+              <Icon type="github" />
+              反馈
+            </a>
+            。<br />
+            <Input
+              allowClear
+              style={{ width: "200px", margin: "10px 10px 10px 0px" }}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="GitBook用户名"
+              value={this.state.shareUser}
+              onChange={({ target: { value } }) => {
+                this.setState({ shareUser: value });
+              }}
+              onPressEnter={this.share.bind(this)}
+            />
+            <Button type="primary" onClick={this.share.bind(this)}>
+              分享
+            </Button>
+            {this.state.alert && (
+              <Alert
+                style={{ width: "200px" }}
+                message="您还没有输入用户名"
+                type="warning"
+                showIcon
+              />
+            )}
+          </div>
+        }
         pagination={{
-          position: "both",
           size: "small",
           hideOnSinglePage: true,
           pageSize: 9
@@ -99,9 +103,6 @@ export default class extends React.Component {
           <List.Item
             key={item.title}
             actions={[
-              // <IconText type="star-o" text="156" />,
-              // <IconText type="like-o" text="156" />,
-              // <IconText type="message" text="2" />,
               <a
                 href={`http://gitbook.kedo.so/ebook/${
                   item.author
@@ -129,13 +130,23 @@ export default class extends React.Component {
               title={<a href={item.href}>{item.title}</a>}
               description={
                 <a style={{ color: "rgba(0, 0, 0, 0.65)" }} href={item.href}>
-                  {item.description}
+                  {item.description.length
+                    ? item.description
+                    : "本书作者没写简介"}
                 </a>
               }
             />
-            <a style={{ color: "rgba(0, 0, 0, 0.65)" }} href={item.href}>
-              {item.about.join("").slice(0, innerWidth < 768 ? 150 : 300)} ……
-            </a>
+            {item.about.length ? (
+              <a style={{ color: "rgba(0, 0, 0, 0.65)" }} href={item.href}>
+                {item.about.join("").slice(0, innerWidth < 768 ? 150 : 300)}{" "}
+                <Icon
+                  style={{ color: "rgba(0, 0, 0, 0.5)" }}
+                  type="double-right"
+                />
+              </a>
+            ) : (
+              ""
+            )}
           </List.Item>
         )}
       />
