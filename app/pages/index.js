@@ -1,14 +1,14 @@
 import Head from "next/head";
-import { Input, List, Icon, Form, Button, Menu } from "antd";
+import { Input, List, Icon, Form, Button } from "antd";
 import axios from "axios";
 const url = "/gitbook";
 const { Search } = Input;
-const IconText = ({ type, text }) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
+// const IconText = ({ type, text }) => (
+//   <span>
+//     <Icon type={type} style={{ marginRight: 8 }} />
+//     {text}
+//   </span>
+// );
 const WrappedShare = Form.create()(({ form }) => (
   <Form
     layout="inline"
@@ -51,13 +51,14 @@ export default class extends React.Component {
     this.list("/list");
   }
   list(path) {
+    this.setState({ loading: true });
     axios.get(url + path).then(response => {
-      this.setState({ gitbooks: response.data });
+      this.setState({ gitbooks: response.data, loading: false });
     });
   }
   render() {
     return [
-      <Head>
+      <Head key="head">
         <title>GitBook Ebook Search--GitBook电子书资源搜索</title>
         <meta
           name="description"
@@ -66,6 +67,7 @@ export default class extends React.Component {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>,
       <Search
+        key="search"
         allowClear
         size="large"
         style={{
@@ -74,23 +76,24 @@ export default class extends React.Component {
           padding: "0 50px"
         }}
         onSearch={value =>
-          axios.get(url + "/search?q=" + value).then(response => {
-            this.setState({ gitbooks: response.data });
-          })
+          value ? this.list("/search?q=" + value) : this.list("/list")
         }
         enterButton="kedo.so"
       />,
       <List
+        key="list"
+        locale={{ emptyText: "GitBook没有给你的那个搜索引擎" }}
+        loading={this.state.loading}
         style={{ padding: "50px 50px" }}
-        itemLayout="horizontal"
-        size="large"
+        itemLayout="vertical"
+        size="small"
         dataSource={this.state.gitbooks}
         footer={<WrappedShare />}
         pagination={{
-          onChange: page => {
-            console.log(page);
-          },
-          pageSize: 10
+          position: "both",
+          size: "small",
+          hideOnSinglePage: true,
+          pageSize: 9
         }}
         renderItem={item => (
           <List.Item
@@ -124,9 +127,15 @@ export default class extends React.Component {
           >
             <List.Item.Meta
               title={<a href={item.href}>{item.title}</a>}
-              description={item.description}
+              description={
+                <a style={{ color: "rgba(0, 0, 0, 0.65)" }} href={item.href}>
+                  {item.description}
+                </a>
+              }
             />
-            {item.about}
+            <a style={{ color: "rgba(0, 0, 0, 0.65)" }} href={item.href}>
+              {item.about.join("").slice(0, innerWidth < 768 ? 150 : 300)} ……
+            </a>
           </List.Item>
         )}
       />
