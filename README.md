@@ -12,5 +12,3 @@ GitBook lacks a search
 2. 新增爬取 author's star list
 
 ## APP
-
-1. 表单提交后自动清空
