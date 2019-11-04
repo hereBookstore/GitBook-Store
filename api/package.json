@@ -23,7 +23,7 @@
     "@nestjs/core": "^6.0.0",
     "@nestjs/mongoose": "^6.1.2",
     "@nestjs/platform-fastify": "^6.3.1",
-    "mongoose": "^5.5.14",
+    "mongoose": "^5.7.5",
     "nodejieba": "^2.3.1",
     "puppeteer": "^1.17.0",
     "reflect-metadata": "^0.1.12",
