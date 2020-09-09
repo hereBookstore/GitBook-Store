@@ -19,6 +19,6 @@
   "homepage": "https://github.com/hereBookstore/GitBook-Store#readme",
   "dependencies": {
     "concurrently": "^4.1.0",
-    "http-proxy": "^1.17.0"
+    "http-proxy": "^1.18.1"
   }
 }
